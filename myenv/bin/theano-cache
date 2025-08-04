@@ -1,0 +1,7 @@
+#!/home/g/ALL/10/week10/Change-point-analysis-and-statistical-modelling/myenv/bin/python3.9
+import sys
+from bin.theano_cache import main
+if __name__ == '__main__':
+    if sys.argv[0].endswith('.exe'):
+        sys.argv[0] = sys.argv[0][:-4]
+    sys.exit(main())
