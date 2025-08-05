@@ -1,4 +1,4 @@
-#!/home/g/ALL/10/week10/Change-point-analysis-and-statistical-modelling/myenv/bin/python3.9
+#!/home/g/ALL/10/week10/Change-point-analysis-and-statistical-modelling/myenv/bin/python3.8
 # -*- coding: utf-8 -*-
 import re
 import sys
