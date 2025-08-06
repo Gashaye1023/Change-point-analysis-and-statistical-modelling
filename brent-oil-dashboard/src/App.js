@@ -1,25 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Dashboard from './dashboard'; // Ensure this path is correct based on your folder structure
+import './App.css'; // Import the CSS for styling
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <div className="app-container">
+            <h1>Brent Oil Prices Dashboard</h1>
+            <Dashboard />
+        </div>
+    );
+};
 
 export default App;
