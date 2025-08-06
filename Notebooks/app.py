@@ -1,5 +1,8 @@
 from flask import Flask, jsonify
 import pandas as pd
+import numpy as np
+from ruptures import Pelt
+from ruptures.costs import CostL2
 
 app = Flask(__name__)
 
@@ -8,10 +11,23 @@ def get_change_points():
     # Load the cleaned data
     data = pd.read_csv('cleaned_brent_oil_prices.csv')
     
-    # Assume the analysis has already been run and results are available
-    change_point = 1500  # Placeholder for actual change point
-    average_before = 0.01  # Placeholder for average before change
-    average_after = 0.02  # Placeholder for average after change
+    # Assume the dataset has a column 'price' for Brent oil prices and 'date' for dates
+    prices = data['price'].values
+
+    # Step 1: Identify change points using PELT method from ruptures library
+    model = "l2"  # Cost model
+    algo = Pelt(model=model).fit(prices)
+    change_points = algo.predict(pen=5)  # Adjust penalty as needed
+
+    # Step 2: Calculate averages
+    if len(change_points) > 1:
+        change_point = change_points[1]  # The first change point
+        average_before = np.mean(prices[:change_point])
+        average_after = np.mean(prices[change_point:])
+    else:
+        change_point = None
+        average_before = None
+        average_after = None
     
     return jsonify({
         'change_point': change_point,
